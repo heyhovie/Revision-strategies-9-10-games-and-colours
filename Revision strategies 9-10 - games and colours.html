@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Revision strategies 9-10 - games and colours</title>
+  <style media="screen">
+    body {
+      color: #444;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+
+    .main {
+      background-color: #444444;
+      border-radius: 10px;
+      border-style: none;
+      height: 783px;
+      position: fixed;
+      width: 1280px;
+    }
+
+    .content {
+      margin: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .interface button,
+    .antwort {
+      background-color: #ff6600;
+      border-radius: 10px;
+      border-style: none;
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px 15px;
+      margin-left: 10px;
+      transition: 0.1s;
+    }
+
+    .interface button:hover,
+    .antwort:hover {
+      background-color: #444444;
+      box-shadow: 0 0 0 3px #fff;
+      cursor: pointer;
+    }
+
+    .interface {
+      margin: 20px 10px 10px auto;
+      text-align: right;
+    }
+
+    .screen {
+      background-color: #fff;
+      height: 680px;
+      margin: 5px;
+      width: 1250px;
+    }
+
+    .help-text {
+      background-color: #fff;
+      border-style: solid;
+      border-width: 3px;
+      border-color: #444;
+      border-radius: 5px;
+      bottom: 100px;
+      right: 22px;
+      padding: 10px;
+      width: 400px;
+    }
+
+    .intro {
+      background-color: #fff;
+      border-radius: 5px;
+      border-color: #444;
+      border-width: 3px;
+      border-style: solid;
+      font-size: 24px;
+      left: 50%;
+      margin: -200px 0 0 -400px;
+      top: 50%;
+      height: 400px;
+      width: 800px;
+    }
+
+    .intro p {
+      margin: 30px auto;
+      width: 100%;
+    }
+
+    .intro img {
+      width: 600px;
+    }
+
+    .heading {
+      color: #444;
+      left: 50%;
+      transform: translate(-50%);
+      text-align: center;
+    }
+
+    .intro,
+    .help-text,
+    .heading,
+    table,
+    input {
+      position: absolute;
+    }
+
+    /* Content_________________________________________________________________ */
+    table {
+      top: 140px;
+      left: 50%;
+      transform: translate(-50%);
+      width: 1140px;
+    }
+
+    th {
+      font-size: 20px;
+      font-weight: bold;
+      width: 140px;
+      height: 26px;
+      text-align: left;
+    }
+
+    table,
+    th,
+    td {
+      border-style: solid;
+      border-width: 1px;
+      border-spacing: 0;
+    }
+
+    td {
+      position: relative;
+      width: 140px;
+      height: 26px;
+      text-align: left;
+    }
+
+    input {
+      width: 130px;
+      height: 22px;
+      padding: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .blueHighlight {
+      background-color: lightskyblue;
+    }
+
+    .tile,
+    .startPanel,
+    .winTab {
+      border-style: solid;
+      border-color: #444444;
+      border-width: 3px;
+      background-color: #ffffff;
+      border-radius: 10px;
+    }
+
+    .startPanel {
+      position: absolute;
+      width: 900px;
+      height: 600px;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 30px;
+      left: 50%;
+      transform: translate(-50%);
+    }
+
+    .startPanel p {
+      margin: 100px;
+    }
+
+    .tile {
+      width: 200px;
+      height: 120px;
+      margin: 10px auto;
+      background-image: url('images/dlearn.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    .tile-box {
+      width: 680px;
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      top: 50px;
+    }
+
+    .disabler {
+      width: 1200px;
+      height: 600px;
+      background-color: white;
+      opacity: 0;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translate(-50%);
+      display: none;
+    }
+
+    .winTab {
+      position: absolute;
+      width: 600px;
+      font-size: 24px;
+      left: 50%;
+      transform: translate(-50%);
+      top: 150px;
+      display: none;
+    }
+
+    .winTab p {
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="content">
+      <div class="screen">
+
+        <div class="tile-box" id="tileBox">
+
+        </div>
+        <div class="disabler" id="disabler">
+
+        </div>
+        <div class="startPanel" id="startPanel">
+          <p><span class='blueHighlight'>Revision strategy 9:</span> Make up games and quizzes based on your revision notes to play with friends and family.<br><span class='blueHighlight'>Revision strategy 10:</span> Cue cards and <span
+              style='color:lightskyblue;'><strong>colour coding</strong></span> information are other good ways of revising and strengthening memory.<br><br>Try matching the pairs in this game to see how colour coding can <br>help you to remember
+            information.<br><br>Press <strong>start</strong> to begin!</p>
+        </div>
+        <div class="winTab" id="winTab">
+          <h1>Well done!</h1>
+          <p>It only took <span id="guessText"> </span> guesses.<br>Try colour coding different sections of your revision notes to help you recall information in the exam</p>
+          <p><strong>Can you remember what words were on each coloured box in this activity?</strong></p>
+          <p>
+            Press <strong>reset</strong> to continue.
+          </p>
+        </div>
+      </div>
+
+      <div class="interface">
+        <button type="button" name="button" id="startButton" onclick="start()">Start</button>
+        <button onmouseover="hideHelp()" onmouseout="hideHelp()" type="button" name="button">help</button>
+        <button onclick="resetAll()" type="button" name="button">reset</button>
+      </div>
+    </div>
+    <div class="help-text" id="help-text" style="display:none">
+      <p>Press the cards to find the matching pairs. Press <strong>reset</strong> to start again.</p>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // General_____________________________________________
+
+    var startB = document.getElementById('startButton');
+    var startP = document.getElementById('startPanel');
+
+    function hideHelp() {
+      var x = document.getElementById("help-text");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+
+    function resetAll() {
+      window.location.reload();
+      return false;
+    }
+
+    function start() {
+      startP.style.display = 'none';
+      randomPosition();
+      addDivs();
+      startB.style.display = 'none';
+    }
+    // Bespoke funcitons_____________________________________
+    var tile1 = document.getElementById('tile1');
+    var tile2 = document.getElementById('tile2');
+    var tile3 = document.getElementById('tile3');
+    var tile4 = document.getElementById('tile4');
+    var tile5 = document.getElementById('tile5');
+    var tile6 = document.getElementById('tile6');
+    var tile7 = document.getElementById('tile7');
+    var tile8 = document.getElementById('tile8');
+    var tile9 = document.getElementById('tile9');
+    var tile10 = document.getElementById('tile10');
+    var tile11 = document.getElementById('tile11');
+    var tile12 = document.getElementById('tile12');
+    var allTiles = [tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12];
+    var testArray = [];
+    var count = [];
+    var divComp = [];
+    var tileComp = [];
+    var disablerDiv = document.getElementById('disabler');
+    var winCount = [];
+    var loseCount = [];
+    var guessText = document.getElementById('guessText');
+    var winnerTab = document.getElementById('winTab');
+    var guessCount = [];
+
+    function winCheck() {
+      if (winCount.length == 6) {
+        guessCount.push(winCount.length + loseCount.length);
+        guessText.innerHTML = guessCount[0];
+        winnerTab.style.display = 'block';
+      }
+    }
+
+    function switchState(tile) {
+      var myTile = tile.getAttribute('id');
+      tile.style.backgroundImage = "url(images/" + myTile + ".png)"
+      divComp.push(tile.classList.value);
+      tileComp.push(tile);
+      count.push('yo');
+      if (divComp.length == 2) {
+        disablerDiv.style.display = 'block';
+      }
+      setTimeout(
+        function() {
+          if (count.length >= 2) {
+            if (divComp[0] == divComp[1]) {
+              winCount.push('win');
+              winCheck();
+              console.log(winCount);
+            } else {
+              loseCount.push('loss');
+              console.log(loseCount);
+              for (k = 0; k < tileComp.length; k++) {
+                tileComp[k].style.backgroundImage = "url(images/dlearn.png)";
+              }
+            }
+            console.log(divComp);
+            tileComp = [];
+            divComp = [];
+            count = [];
+            disablerDiv.style.display = 'none';
+          }
+        }, 2000
+      );
+
+    }
+
+    function randomPosition() {
+      testArray = [];
+      for (i = 0; testArray.length < 12; i++) {
+        var randomIndex = Math.floor(Math.random() * 12);
+        if (testArray.includes(randomIndex) != true) {
+          testArray.push(randomIndex);
+        }
+      }
+      console.log(testArray);
+    }
+
+    var tileB = document.getElementById('tileBox');
+    var myDivs = ["<div class='tile one' id='tile1' onclick='switchState(this)'></div>",
+      "<div class='tile two' id='tile2' onclick='switchState(this)'></div>",
+      "<div class='tile three' id='tile3' onclick='switchState(this)'></div>",
+      "<div class='tile four' id='tile4' onclick='switchState(this)'></div>",
+      "<div class='tile five' id='tile5' onclick='switchState(this)'></div>",
+      "<div class='tile six' id='tile6' onclick='switchState(this)'></div>",
+      "<div class='tile one' id='tile7' onclick='switchState(this)'></div>",
+      "<div class='tile two' id='tile8' onclick='switchState(this)'></div>",
+      "<div class='tile three' id='tile9' onclick='switchState(this)'></div>",
+      "<div class='tile four' id='tile10' onclick='switchState(this)'></div>",
+      "<div class='tile five' id='tile11' onclick='switchState(this)'></div>",
+      "<div class='tile six' id='tile12' onclick='switchState(this)'></div>"
+    ];
+
+    function addDivs() {
+      var outputDiv = '';
+      for (i = 0; i < testArray.length; i++) {
+        outputDiv = outputDiv + myDivs[testArray[i]];
+      }
+      tileB.innerHTML = outputDiv;
+    }
+  </script>
+</body>
+
+</html>
